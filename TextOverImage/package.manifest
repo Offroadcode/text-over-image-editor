@@ -1,0 +1,16 @@
+{
+	propertyEditors: [{
+		name: "Text Over Image Editor",
+		alias: "TextOverImage.Editor",
+		editor: {
+			view: "~/app_plugins/TextOverImage/views/TextOverImageEditorView.html",
+			valueType: "JSON",
+		}
+	}],
+	javascript: [
+		"~/app_plugins/TextOverImage/js/textOverImage.js"
+	],
+	css : [
+		"~/app_plugins/TextOverImage/css/textOverImage.css"
+	]
+}
