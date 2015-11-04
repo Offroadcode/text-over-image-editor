@@ -3,14 +3,14 @@
 		name: "Text Over Image Editor",
 		alias: "TextOverImage.Editor",
 		editor: {
-			view: "~/app_plugins/TextOverImage/views/TextOverImageEditorView.html",
+			view: "~/app_plugins/TextOverImageEditor/views/TextOverImageEditorView.html",
 			valueType: "JSON",
 		}
 	}],
 	javascript: [
-		"~/app_plugins/TextOverImage/js/textOverImage.js"
+		"~/app_plugins/TextOverImageEditor/js/textOverImage.js"
 	],
 	css : [
-		"~/app_plugins/TextOverImage/css/textOverImage.css"
+		"~/app_plugins/TextOverImageEditor/css/textOverImage.css"
 	]
 }

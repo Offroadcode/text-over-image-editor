@@ -1,2 +1,30 @@
 .text-over-image {
+    .image {
+        box-sizing: border-box;
+    }
+    .overlay {
+        display: inline-block;
+        padding: 8px;
+        border: solid 2px transparent;
+        cursor: move;
+        &:hover, &:active, &:focus {
+            border: dotted 2px #ccc;
+        }
+    }
+    h1, p {
+        cursor: text;
+        margin: 0;
+        display: inline-block;
+        padding: 5px;
+        vertical-align: top;
+        background: rgba(white, .8);
+    }
+    h1 {
+        float: left;
+        margin-bottom: 5px;
+    }
+    p {
+        float: left;
+        clear: both;
+    }
 }
