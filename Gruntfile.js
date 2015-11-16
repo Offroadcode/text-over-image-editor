@@ -14,6 +14,10 @@ module.exports = function(grunt) {
         spawn: false,
         atBegin: true
       },
+      dll: {
+        files: ['TextOverImage/Umbraco/TextOverImage/**/*.cs'] ,
+        tasks: ['msbuild:dist', 'copy:dll']
+      },
       js: {
         files: ['TextOverImage/**/*.js'],
         tasks: ['concat:dist']
@@ -44,6 +48,7 @@ module.exports = function(grunt) {
         src: [
             'TextOverImage/text.over.image.namespaces.js',
             'TextOverImage/models/text.over.image.editor.models.js',
+            'TextOverImage/directives/contenteditable.directive.js',
             'TextOverImage/controllers/text.over.image.editor.controller.js'
         ],
         dest: '<%= basePath %>/js/textOverImage.js'
@@ -51,6 +56,12 @@ module.exports = function(grunt) {
     },
 
     copy: {
+        dll: {
+            cwd: 'TextOverImage/Umbraco/TextOverImage/bin/debug/',
+            src: 'TextOverImage.dll',
+            dest: '<%= dest %>/bin/',
+            expand: true
+        },
         html: {
             cwd: 'TextOverImage/views/',
             src: [
@@ -116,7 +127,7 @@ module.exports = function(grunt) {
         src: ['app/**/*.js', 'lib/**/*.js']
       }
   },
-  
+
   sass: {
 		dist: {
 			options: {
@@ -138,8 +149,10 @@ module.exports = function(grunt) {
       js: [
         'TextOverImageEditor/controllers/*.js',
 		'TextOverImageEditor/models/*.js',
+        'TextOveRImageEditor/directives/*.js',
         '!TextOverImageEditor/controllers/text.over.image.editor.controller.js',
-		'!TextOverImageEditor/models/text.over.image.editor.models.js'
+		'!TextOverImageEditor/models/text.over.image.editor.models.js',
+        '!TextOveRImageEditor/directives/contenteditable.directive.js'
       ],
       css: [
         'TextOverImageEditor/css/*.css',
@@ -149,10 +162,29 @@ module.exports = function(grunt) {
 		'TextOverImageEditor/sass/*.scss',
 		'!TextOverImageEditor/sass/textOverImage.scss'
 	  ]
+  },
+  msbuild: {
+      options: {
+        stdout: true,
+        verbosity: 'quiet',
+        maxCpuCount: 4,
+        version: 4.0,
+        buildParameters: {
+          WarningLevel: 2,
+          NoWarn: 1607
+        }
+    },
+    dist: {
+        src: ['TextOverImage/Umbraco/TextOverImage/TextOverImage.csproj'],
+        options: {
+            projectConfiguration: 'Debug',
+            targets: ['Clean', 'Rebuild'],
+        }
     }
+  }
 
   });
 
-  grunt.registerTask('default', ['concat', 'sass:dist', 'copy:html', 'copy:manifest', 'copy:css', 'clean:html', 'clean:js', 'clean:sass', 'clean:css']);
+  grunt.registerTask('default', ['concat', 'sass:dist', 'copy:html', 'copy:manifest', 'copy:css', 'msbuild:dist', 'copy:dll', 'clean:html', 'clean:js', 'clean:sass', 'clean:css']);
   grunt.registerTask('umbraco', ['clean:tmp', 'default', 'copy:umbraco', 'umbracoPackage', 'clean:tmp']);
 };

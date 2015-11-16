@@ -4,3 +4,6 @@ tmp/
 pkg/
 Umbraco.Test/
 .sass-cache/
+TextOverImage/Umbraco/packages/
+TextOverImage/Umbraco/TextOverImage/bin/
+TextOverImage/Umbraco/TextOverImage/obj/
