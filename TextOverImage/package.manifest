@@ -4,7 +4,17 @@
 		alias: "TextOverImage.Editor",
 		editor: {
 			view: "~/app_plugins/TextOverImageEditor/views/TextOverImageEditorView.html",
-			valueType: "JSON",
+			valueType: "JSON"
+		},
+		prevalues: {
+			fields: [
+				{
+					label: "Max Width",
+					description: "The maximum width the selected image displays at.",
+					key: "maxWidth",
+					view: "number"
+				}
+			]
 		}
 	}],
 	javascript: [

@@ -1,8 +1,25 @@
-<div ng-controller="text.over.image.editor.controller" class="text-over-image">
-    <div class="image" style="background: url(http://lorempixel.com/800/400/nature/); width: 800px; height: 400px;">
-        <div class="overlay">
-            <h1 contenteditable="true">Headline</h1>
-            <p contenteditable="true">Sub-Headline</p>
+<div ng-controller="text.over.image.editor.controller" class="text-over-image" ng-style="getFrameStyle()">
+    <div ng-show="!hasImageSelected()">
+        <button ng-click="openMediaPicker()" type="button" class="btn">Select Image</button>
+    </div>
+    <div class="image" ng-class="{selectMode: propertyEditorMode === 'select'}" ng-show="hasImageSelected()" ng-style="getBackgroundStyle()">
+        <div class="overlay pos-{{model.value.position}}">
+            <h1 contenteditable="true" ng-model="model.value.headline">{{model.value.headline}}</h1>
+            <p contenteditable="true"ng-model="model.value.subheadline">{{model.value.subheadline}}</p>
+        </div>
+        <div class="drop-grid">
+            <button type="button" class="grid-tl" ng-click="changePos('tl')"></button>
+            <button type="button" class="grid-tc" ng-click="changePos('tc')"></button>
+            <button type="button" class="grid-tr" ng-click="changePos('tr')"></button>
+            <button type="button" class="grid-ml" ng-click="changePos('ml')"></button>
+            <button type="button" class="grid-mc" ng-click="changePos('mc')"></button>
+            <button type="button" class="grid-mr" ng-click="changePos('mr')"></button>
+            <button type="button" class="grid-bl" ng-click="changePos('bl')"></button>
+            <button type="button" class="grid-bc" ng-click="changePos('bc')"></button>
+            <button type="button" class="grid-br" ng-click="changePos('br')"></button>
+        </div>        
+        <div class="settings">
+            <button type="button" class="btn btn-small" ng-click="toggleMode()"><i class="icon-thumbnails-small"></i></button>
         </div>
     </div>
 </div>

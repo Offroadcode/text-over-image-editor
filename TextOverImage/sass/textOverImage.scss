@@ -1,30 +1,144 @@
 .text-over-image {
+    position: relative;
+    display: block;
+    overflow: hidden;
     .image {
         box-sizing: border-box;
+        position: relative;
     }
     .overlay {
+        position: absolute;
         display: inline-block;
         padding: 8px;
         border: solid 2px transparent;
         cursor: move;
+        h1, p {
+            cursor: text;
+            margin: 0;
+            display: inline-block;
+            padding: 5px;
+            vertical-align: top;
+            background: rgba(white, .8);
+            float: left;
+        }
+        h1 {
+            margin-bottom: 5px;
+        }
+        p {
+            clear: both;
+        }
         &:hover, &:active, &:focus {
             border: dotted 2px #ccc;
         }
+        &.pos-tc, &.pos-mc, &.pos-bc {
+            text-align: center;
+            width: calc(100% - 20px);
+            h1, p {
+                text-align: center;
+                width: calc(100% - 10px);
+            }
+        }
+        &.pos-tr, &.pos-mr, &.pos-br {
+            text-align: right;
+            right: 0;
+            h1, p {
+                text-align: right;
+                width: calc(100% - 10px);
+            }
+        }
+        &.pos-ml, &.pos-mc,&.pos-mr {
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+        &.pos-bl, &.pos-bc, &.pos-br {
+            bottom: 0%;
+        }
     }
-    h1, p {
-        cursor: text;
-        margin: 0;
-        display: inline-block;
-        padding: 5px;
-        vertical-align: top;
-        background: rgba(white, .8);
+    .settings {
+        position: absolute;
+        top: 10px;
+        right: -100%;
+        transition: ease all 0.5s;
     }
-    h1 {
-        float: left;
-        margin-bottom: 5px;
+    &:hover .settings {
+        right: 10px;
     }
-    p {
-        float: left;
-        clear: both;
+    .drop-grid {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        button {
+            display: none;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            position: absolute;
+            width: 33%;
+            height: 33%;
+            opacity: 0;
+            background: #000;
+        }
+        .grid-tl {
+            left: 0;
+            top: 0;
+        }
+        .grid-tc {
+            left: 33%;
+            top: 0;
+            width: 34%;
+            height: 33%;
+        }
+        .grid-tr {
+            left: 67%;
+            top: 0;
+        }
+        .grid-ml {
+            left: 0;
+            top: 33%;
+            height: 34%;
+        }
+        .grid-mc {
+            left: 33%;
+            top: 33%;
+            height: 34%;
+            width: 34%;
+        }
+        .grid-mr {
+            left: 67%;
+            top: 33%;
+            height: 34%;
+        }
+        .grid-bl {
+            left: 0;
+            top: 67%;
+        }
+        .grid-bc {
+            left: 33%;
+            top: 67%;
+            width: 34%;
+        }
+        .grid-br {
+            left: 67%;
+            top: 67%;
+        }
     }
+
+    .image.selectMode {
+        .overlay {
+            opacity: 0.75;
+            pointer-events: none;
+        }
+        .drop-grid button {
+            display: block;
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+    }
+
 }
