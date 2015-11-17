@@ -9,7 +9,7 @@
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    public class TOIMedia
+    public class TextOverImageMedia
     {
         [JsonProperty("id")]
         public int Id { get; set; }
@@ -23,7 +23,7 @@
         [JsonProperty("height")]
         public int Height { get; set; }
 
-        public static TOIMedia Deserialize(string json)
+        public static TextOverImageMedia Deserialize(string json)
         {
             // Validate the JSON
             if (json == null || !json.StartsWith("{") || !json.EndsWith("}"))
@@ -33,7 +33,7 @@
 
             // Deserialize the JSON
             var jobj = (JProperty)JsonConvert.DeserializeObject(json);
-            return new TOIMedia()
+            return new TextOverImageMedia()
             {
                 Id = (int)jobj.Value["id"],
                 Url = (string)jobj.Value["url"],

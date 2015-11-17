@@ -13,7 +13,7 @@
         public string Headline { get; set; }
 
         [JsonProperty("media")]
-        public TOIMedia Media { get; set; }
+        public TextOverImageMedia Media { get; set; }
 
         [JsonProperty("subheadline")]
         public string Subheadline { get; set; }
@@ -31,11 +31,13 @@
 
             // Deserialize the JSON
             var jobj = (JObject)JsonConvert.DeserializeObject(json);
+
             return new ImageWithText()
             {
                 Headline = jobj.Value<string>("headline"),
-                Media = jobj.Value<TOIMedia>("media"),
-                Subheadline = jobj.Value<string>("subheadline")
+                Media = jobj.GetValue("media").ToObject<TextOverImageMedia>(),
+                Subheadline = jobj.Value<string>("subheadline"),
+                Position = jobj.Value<string>("position")
             };
         }
     }
