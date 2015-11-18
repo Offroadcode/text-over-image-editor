@@ -72,6 +72,7 @@
         top: 0;
         width: 100%;
         height: 100%;
+        pointer-events: none;
         button {
             display: none;
             padding: 0;
@@ -133,10 +134,13 @@
             opacity: 0.75;
             pointer-events: none;
         }
-        .drop-grid button {
-            display: block;
-            &:hover {
-                opacity: 0.5;
+        .drop-grid {
+            pointer-events: auto; 
+            button {
+                display: block;
+                &:hover {
+                    opacity: 0.5;
+                }
             }
         }
     }

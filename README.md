@@ -2,6 +2,8 @@
 
 A custom property editor for Umbraco that allows for an image to be selected and a headline and sub-headline to be added to it and then positioned on top of the image.
 
+![Text Over Image Editor Screenshot](https://drive.google.com/file/d/0B8oHMRu5dbWzYkNnZU12RDk5U00/view?usp=sharing)
+
 ## Download for Umbraco
 
 Install the selected release through the Umbraco package installer or download and install locally from Our.
