@@ -129,6 +129,9 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
             if (width > $scope.maxWidth) {
                 width = $scope.maxWidth;
             }
+						if(width == 0) {
+							width = 800;
+						}
             styles = {
                 width: width + "px",
             };
