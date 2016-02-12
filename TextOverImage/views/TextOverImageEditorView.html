@@ -1,6 +1,6 @@
 <div ng-controller="text.over.image.editor.controller" class="text-over-image" ng-style="getFrameStyle()">
     <div ng-show="!hasImageSelected()">
-        <button ng-click="openMediaPicker()" type="button" class="btn">Select Image</button>
+        <button ng-click="openMediaPicker()" type="button" class="btn">Select Image</button> or <button type="button" class="btn">Add Text</button>
     </div>
     <div class="image" ng-class="{selectMode: propertyEditorMode === 'select'}" ng-show="hasImageSelected()" ng-style="getBackgroundStyle()">
         <div class="overlay pos-{{model.value.position}}">
@@ -19,8 +19,10 @@
             <button type="button" class="grid-br" ng-click="changePos('br')"></button>
         </div>
         <div class="settings">
-            <button type="button" class="btn btn-small" ng-click="toggleMode()"><i class="icon-thumbnails-small"></i></button>
-            <button type="button" class="btn btn-small" ng-click="openMediaPicker()"><i class="icon-umb-media"></i></button>
+            <button type="button" class="btn btn-small" title="Resize: Medium, Tall, or Short"><i class="icon-navigation-vertical"></i></button>
+            <button type="button" class="btn btn-small" ng-click="toggleMode()" title="Position your text"><i class="icon-thumbnails-small"></i></button>
+            <button type="button" class="btn btn-small" ng-click="openMediaPicker()" title="Select an image"><i class="icon-umb-media"></i></button>
+            <button type="button" class="btn btn-small btn-danger" title="Delete the banner"><i class="icon-trash"></i></button>
         </div>
     </div>
 </div>

@@ -124,17 +124,16 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
 			width: "800px"
 		}
 		if ($scope.model.value.media) {
-			var media = $scope.model.value.media;
-            width = media.width;
-            if (width > $scope.maxWidth) {
-                width = $scope.maxWidth;
+		    var media = $scope.model.value.media;
+            if (media.width > 0) {
+                width = media.width;
+                if (width > $scope.maxWidth && $scope.maxWidth > 0) {
+                    width = $scope.maxWidth;
+                }
+                styles = {
+                    width: width + "px"
+                };
             }
-						if(width == 0) {
-							width = 800;
-						}
-            styles = {
-                width: width + "px",
-            };
 		}
 		return styles;
 	};
