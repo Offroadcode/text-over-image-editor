@@ -49,6 +49,7 @@ module.exports = function(grunt) {
             'TextOverImage/text.over.image.namespaces.js',
             'TextOverImage/models/text.over.image.editor.models.js',
             'TextOverImage/directives/contenteditable.directive.js',
+			'TextOverImage/controllers/confirmation.dialog.controller.js',
             'TextOverImage/controllers/text.over.image.editor.controller.js'
         ],
         dest: '<%= basePath %>/js/textOverImage.js'
@@ -65,7 +66,8 @@ module.exports = function(grunt) {
         html: {
             cwd: 'TextOverImage/views/',
             src: [
-                'TextOverImageEditorView.html'
+                'TextOverImageEditorView.html',
+				'ConfirmationDialogView.html'
             ],
             dest: '<%= basePath %>/views/',
             expand: true,
@@ -150,6 +152,7 @@ module.exports = function(grunt) {
         'TextOverImageEditor/controllers/*.js',
 		'TextOverImageEditor/models/*.js',
         'TextOveRImageEditor/directives/*.js',
+		'!TextOverImageEditor/controllers/confirmation.dialog.controller.js',
         '!TextOverImageEditor/controllers/text.over.image.editor.controller.js',
 		'!TextOverImageEditor/models/text.over.image.editor.models.js',
         '!TextOveRImageEditor/directives/contenteditable.directive.js'

@@ -6,6 +6,7 @@
 	* @param {JSON} data
 	* @param {textOverImage.Models.Media} data.media
 	* @param {string} data.headline - A text headline that will overlap the image.
+	* @param {string} data.height - "short", "mid", or "tall"; class names for the height of the banner div.
 	* @param {string} data.subheadline - A text subheadline that will overlap the image.
 	* @param {string} data.position - tl, tc, tr, ml, mc, mr, bl, bm, br.
 	* @description Class defining a Text Over Image Editor, which displays a selectable image, headline, sub-headline, and text position.
@@ -13,12 +14,16 @@
 	models.TextOverImage = function(data) {
 		var self = this;
 		self.headline = "Headline";
+		self.height = "short";
 		self.media = new textOverImage.Models.Media();
 		self.subheadline = "Sub-Headline";
 		self.position = "tl";
 		if (data !== undefined) {
 			if (data.headline !== undefined) {
 				self.headline = data.headline;
+			}
+			if (data.height !== undefined) {
+				self.height = data.height;
 			}
 			if (data.media !== undefined) {
 				self.media = new textOverImage.Models.Media(data.media);

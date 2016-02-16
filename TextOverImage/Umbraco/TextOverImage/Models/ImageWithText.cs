@@ -12,6 +12,9 @@
         [JsonProperty("headline")]
         public string Headline { get; set; }
 
+        [JsonProperty("height")]
+        public string Height { get; set; }
+
         [JsonProperty("media")]
         public TextOverImageMedia Media { get; set; }
 
@@ -35,6 +38,7 @@
             return new ImageWithText()
             {
                 Headline = jobj.Value<string>("headline"),
+                Height = jobj.Value<string>("height"),
                 Media = jobj.GetValue("media").ToObject<TextOverImageMedia>(),
                 Subheadline = jobj.Value<string>("subheadline"),
                 Position = jobj.Value<string>("position")

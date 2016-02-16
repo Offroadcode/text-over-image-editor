@@ -18,11 +18,31 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
         $scope.model.value = $scope.getPropertyValue();
         $scope.maxWidth = $scope.getMaxWidth();
 		$scope.propertyEditorMode = "edit";
-        console.info($scope.model.value);
-        console.info($scope.maxWidth);
+		$scope.shouldShowBannerWithoutImage = false;
     };
 
 	// Event Handler Methods /////////////////////////////////////////////////////
+
+	/**
+	* @method changeHeight
+	* @description Changes $scope.model.value.height in a rotation to the next of the three valid values for classNames: "short", "mid", "tall".
+	*/
+	$scope.changeHeight = function() {
+		var height = $scope.model.value.height;
+		switch (height) {
+			case "short":
+				height = "mid";
+				break;
+			case "mid":
+				height = "tall";
+				break;
+			case "tall":
+			default:
+				height = "short";
+				break;
+		}
+		$scope.model.value.height = height;
+	};
 
 	/**
 	* @method changePos
@@ -43,15 +63,37 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
     */
     $scope.handleMediaPickerSelection = function(data) {
         if (data) {
-            console.info(data);
             if (data.id) {
                 $scope.model.value.media.id = data.id;
                 $scope.model.value.media.url = data.image;
                 $scope.model.value.media.width = data.originalWidth;
                 $scope.model.value.media.height = data.originalHeight;
+				$scope.shouldShowBannerWithoutImage = true;
             }
         }
     };
+
+	/**
+	* @method onRemoveImageConfirmation
+	* @description Handles callback from remove image confirmation dialog, deleting the media item from the model's value.
+	*/
+	$scope.onRemoveImageConfirmation = function() {
+		$scope.model.value.media = new textOverImage.Models.Media();
+	};
+
+	/**
+	* @method openConfirmRemoveDialog
+	* @description Using Umbraco's dialogService, opens confirmation dialog, asking user to confirm they want to remove the image from the banner. Dialog result is passed to $scope.onRemoveImageConfirmation
+	*/
+	$scope.openConfirmRemoveDialog = function() {
+		dialogService.open({
+			template: "/App_plugins/TextOverImageEditor/views/ConfirmationDialogView.html",
+			dialogData: {
+				message: "Are you sure you want to remove the image from the banner?"
+			},
+			callback: $scope.onRemoveImageConfirmation
+		});
+	};
 
     /**
     * @method openMediaPicker
@@ -64,6 +106,14 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
         };
         dialogService.mediaPicker(options);
     };
+
+	/**
+	* @method showBannerWithoutImage
+	* @description Shows the banner without an image, for text on a single-color background.
+	*/
+	$scope.showBannerWithoutImage = function() {
+		$scope.shouldShowBannerWithoutImage = true;
+	}
 
 	/**
 	* @method toggleMode
@@ -93,9 +143,9 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
         var styles = {
             width: "800px",
             height: "400px",
-            background: "black"
+            background: "#333"
         }
-        if ($scope.model.value.media) {
+        if ($scope.model.value.media && $scope.model.value.media.url !== "") {
             var media = $scope.model.value.media;
             width = media.width;
             height = media.height;
@@ -107,10 +157,21 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
             styles = {
                 width: width + "px",
                 height: height + "px",
-                background: "url(" + media.url + ")",
-                'background-size': "contain"
+                background: "url(" + media.url + ") center center no-repeat",
+                'background-size': "cover"
             };
         }
+		switch ($scope.model.value.height) {
+			case "short":
+				styles.height = "200px";
+				break;
+			case "mid":
+				styles.height = "400px";
+				break;
+			case "tall":
+				styles.height = "600px";
+				break;
+		}
         return styles;
     };
 
@@ -136,6 +197,19 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
             }
 		}
 		return styles;
+	};
+
+	/**
+	* @method getImageWrapperClasses
+	* @returns {string}
+	* @description Provides the styles for the wrapper div that represents the banner for the property editor.
+	*/
+	$scope.getImageWrapperClasses = function() {
+		var classes = "image " + $scope.model.value.height + " ";
+		if ($scope.propertyEditorMode === "select") {
+			classes += "selectMode";
+		}
+		return classes
 	};
 
     /**
@@ -175,11 +249,14 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
     */
     $scope.hasImageSelected = function() {
         var hasImageSelected = false;
-        if ($scope.model && $scope.model.value) {
+        if (($scope.model && $scope.model.value)) {
             if ($scope.model.value.media.id != 0) {
                 hasImageSelected = true;
             }
         }
+		if ($scope.shouldShowBannerWithoutImage) {
+			hasImageSelected = true;
+		}
         return hasImageSelected;
     };
 
