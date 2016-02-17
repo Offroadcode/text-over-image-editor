@@ -16,6 +16,7 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
     */
     $scope.setVariables = function() {
         $scope.model.value = $scope.getPropertyValue();
+		console.info($scope.model.value);
         $scope.maxWidth = $scope.getMaxWidth();
 		$scope.propertyEditorMode = "edit";
 		$scope.shouldShowBannerWithoutImage = false;
@@ -253,6 +254,9 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
             if ($scope.model.value.media.id != 0) {
                 hasImageSelected = true;
             }
+			if (($scope.model.value.headline !== "" && $scope.model.value.headline !== "Headline") || ($scope.model.value.subheadline !== "" && $scope.model.value.subheadline !== "Sub-Headline")) {
+				hasImageSelected = true;
+			}
         }
 		if ($scope.shouldShowBannerWithoutImage) {
 			hasImageSelected = true;
