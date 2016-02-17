@@ -14,10 +14,10 @@
 	models.TextOverImage = function(data) {
 		var self = this;
 		self.headline = "Headline";
-		self.height = "short";
+		self.height = "mid";
 		self.media = new textOverImage.Models.Media();
 		self.subheadline = "Sub-Headline";
-		self.position = "tl";
+		self.position = "mc";
 		if (data !== undefined) {
 			if (data.headline !== undefined) {
 				self.headline = data.headline;
