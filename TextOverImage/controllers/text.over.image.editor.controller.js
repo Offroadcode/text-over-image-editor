@@ -16,7 +16,6 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
     */
     $scope.setVariables = function() {
         $scope.model.value = $scope.getPropertyValue();
-		console.info($scope.model.value);
         $scope.maxWidth = $scope.getMaxWidth();
 		$scope.propertyEditorMode = "edit";
 		$scope.shouldShowBannerWithoutImage = false;
@@ -80,7 +79,6 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
 	 * @description Event handler triggered by a link picker dialog. If there is a link selected, updates $scope.model.value with the link's information.
 	 */
 	$scope.handleLinkPickerSelection = function(data) {
-		console.info("Handling Link Picker Callback", data);
 		if (data) {
 			$scope.model.value.link.id = data.id; 
 			$scope.model.value.link.name = data.name;
@@ -141,7 +139,6 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
             callback: $scope.handleLinkPickerSelection
         });
         dialogService.closeAll();
-		console.info("Model", $scope.model.value);
     };
 
 	$scope.renderAddLinkText = function() {
