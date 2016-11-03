@@ -5,7 +5,11 @@
     <div class="image" ng-class="getImageWrapperClasses()" ng-show="hasImageSelected()" ng-style="getBackgroundStyle()">
         <div class="overlay pos-{{model.value.position}}">
             <h1 contenteditable="plaintext-only" ng-model="model.value.headline">{{model.value.headline}}</h1>
-            <p contenteditable="plaintext-only" ng-model="model.value.subheadline">{{model.value.subheadline}}</p>
+            <p contenteditable="plaintext-only" ng-model="model.value.subheadline" ng-show="model.config.showSubHeadline">{{model.value.subheadline}}</p>
+            <div ng-show="model.config.showLink">
+                <br/>
+                <button ng-click="openLinkPicker()" type="button" class="btn btn-inline">{{renderAddLinkText()}}</button>
+            </div>
         </div>
         <div class="drop-grid">
             <button type="button" class="grid-tl" ng-click="changePos('tl')"></button>
@@ -22,7 +26,7 @@
             <button type="button" class="btn btn-small" title="Resize: Medium, Tall, or Short" ng-click="changeHeight()"><i class="icon-navigation-vertical"></i></button>
             <button type="button" class="btn btn-small" ng-click="toggleMode()" title="Position your text"><i class="icon-thumbnails-small"></i></button>
             <button type="button" class="btn btn-small" ng-click="openMediaPicker()" title="Select an image"><i class="icon-umb-media"></i></button>
-            <button type="button" class="btn btn-small btn-danger" title="Delete the banner" ng-click="openConfirmRemoveDialog()"><i class="icon-trash"></i></button>
+            <button type="button" class="btn btn-small btn-danger" title="Delete the banner" ng-show="hasImageSelected()" ng-click="openConfirmRemoveDialog()"><i class="icon-trash"></i></button>
         </div>
     </div>
 </div>

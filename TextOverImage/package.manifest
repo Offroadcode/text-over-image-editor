@@ -13,6 +13,18 @@
 					description: "The maximum width the selected image displays at.",
 					key: "maxWidth",
 					view: "number"
+				},
+				{
+					label: "Show Sub-Headline",
+					description: "Show a second headline that can be edited below the first.",
+					key: "showSubHeadline",
+					view: "boolean"
+				},
+				{
+					label: "Show Link",
+					description: "Allow the user to add a link below the text",
+					key: "showLink",
+					view: "boolean"
 				}
 			]
 		}

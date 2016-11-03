@@ -75,6 +75,21 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
     };
 
 	/**
+	 * @method $scope.handleLinkPickerSelection
+	 * @param {Object} data - modal object returned by dialogService.linkPicker()
+	 * @description Event handler triggered by a link picker dialog. If there is a link selected, updates $scope.model.value with the link's information.
+	 */
+	$scope.handleLinkPickerSelection = function(data) {
+		console.info("Handling Link Picker Callback", data);
+		if (data) {
+			$scope.model.value.link.id = data.id; 
+			$scope.model.value.link.name = data.name;
+			$scope.model.value.link.target = data.target;
+			$scope.model.value.link.url = data.url;
+		}
+	}
+
+	/**
 	* @method onRemoveImageConfirmation
 	* @description Handles callback from remove image confirmation dialog, deleting the media item from the model's value.
 	*/
@@ -107,6 +122,31 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
         };
         dialogService.mediaPicker(options);
     };
+
+	/**
+    * @method openLinkPicker
+    * @description Opens the content picker dialog, showing only images, and sends the data returned to $scope.handleLinkPickerSelection.
+    */
+    $scope.openLinkPicker = function () {
+		var link = {
+            name: $scope.model.value.link.name,
+            url:  $scope.model.value.link.url,
+            target: $scope.model.value.link.target,
+         	// Check to see if it's media and remove id as it attempts resolve as content causing error
+            id: $scope.model.value.link.isMedia ? null : $scope.model.value.link.id
+        }
+
+        dialogService.linkPicker({
+            currentTarget: link,
+            callback: $scope.handleLinkPickerSelection
+        });
+        dialogService.closeAll();
+		console.info("Model", $scope.model.value);
+    };
+
+	$scope.renderAddLinkText = function() {
+		return $scope.model.value.link.name == "" ? "+ Add a Link" : $scope.model.value.link.name;
+	}
 
 	/**
 	* @method showBannerWithoutImage

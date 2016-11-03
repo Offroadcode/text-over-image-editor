@@ -2,6 +2,17 @@
     position: relative;
     display: block;
     overflow: hidden;
+    br {
+        display: block;
+        clear: both;
+    }
+    .btn-inline {
+        margin-top: 1em;
+        display: inline-block;
+        background: none;
+        border: none;
+        color: #2e8aea;
+    }
     .image {
         box-sizing: border-box;
         position: relative;

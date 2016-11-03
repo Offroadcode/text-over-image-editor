@@ -15,6 +15,7 @@
 		var self = this;
 		self.headline = "Headline";
 		self.height = "mid";
+		self.link = new textOverImage.Models.Link();
 		self.media = new textOverImage.Models.Media();
 		self.subheadline = "Sub-Headline";
 		self.position = "mc";
@@ -24,6 +25,9 @@
 			}
 			if (data.height !== undefined) {
 				self.height = data.height;
+			}
+			if (data.link !== undefined) {
+				self.link = new textOverImage.Models.Link(data.link);
 			}
 			if (data.media !== undefined) {
 				self.media = new textOverImage.Models.Media(data.media);
@@ -68,5 +72,34 @@
 			}
 		}
 	};
+
+	/**
+	 * @class Link
+	 * @this Link
+	 * @param {JSON} data
+	 * @param {integer} data.id
+	 * @param {string} data.url
+	 */
+	models.Link = function(data) {
+		var self = this;
+		self.id = 0;
+		self.name = "";
+		self.target = "_self";
+		self.url = "";
+		if (data !== undefined) {
+			if (data.id !== undefined) {
+				self.id = data.id;
+			}
+			if (data.name !== undefined) {
+				self.name = data.name;
+			}
+			if (data.target !== undefined) {
+				self.target = data.target;
+			}
+			if (data.url !== undefined) {
+				self.url = data.url;
+			}
+		}
+	}
 
 }(window.textOverImage.Models = window.textOverImage.Models || {}));
