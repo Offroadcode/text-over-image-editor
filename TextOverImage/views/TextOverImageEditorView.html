@@ -4,8 +4,8 @@
     </div>
     <div class="image" ng-class="getImageWrapperClasses()" ng-show="hasImageSelected()" ng-style="getBackgroundStyle()">
         <div class="overlay pos-{{model.value.position}}">
-            <h1 contenteditable="true" ng-model="model.value.headline">{{model.value.headline}}</h1>
-            <p contenteditable="true"ng-model="model.value.subheadline">{{model.value.subheadline}}</p>
+            <h1 contenteditable="plaintext-only" ng-model="model.value.headline">{{model.value.headline}}</h1>
+            <p contenteditable="plaintext-only" ng-model="model.value.subheadline">{{model.value.subheadline}}</p>
         </div>
         <div class="drop-grid">
             <button type="button" class="grid-tl" ng-click="changePos('tl')"></button>
