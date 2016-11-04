@@ -1,4 +1,6 @@
-﻿namespace TextOverImage
+﻿using TextOverImage.Models;
+
+namespace TextOverImage.Converters
 {
     using Umbraco.Core.Models.PublishedContent;
     using Umbraco.Core.PropertyEditors;

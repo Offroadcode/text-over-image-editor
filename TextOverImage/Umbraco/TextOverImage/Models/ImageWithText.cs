@@ -1,9 +1,5 @@
-﻿namespace TextOverImage
+﻿namespace TextOverImage.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
@@ -14,6 +10,9 @@
 
         [JsonProperty("height")]
         public string Height { get; set; }
+
+        [JsonProperty("link")]
+        public TextOverImageLink Link { get; set; }
 
         [JsonProperty("media")]
         public TextOverImageMedia Media { get; set; }
@@ -39,6 +38,7 @@
             {
                 Headline = jobj.Value<string>("headline"),
                 Height = jobj.Value<string>("height"),
+                Link = jobj.GetValue("link").ToObject<TextOverImageLink>(),
                 Media = jobj.GetValue("media").ToObject<TextOverImageMedia>(),
                 Subheadline = jobj.Value<string>("subheadline"),
                 Position = jobj.Value<string>("position")

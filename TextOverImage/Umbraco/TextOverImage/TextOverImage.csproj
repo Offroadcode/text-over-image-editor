@@ -227,6 +227,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\TextOverImagePropertyValueConverter.cs" />
+    <Compile Include="Models\TextOverImageLink.cs" />
     <Compile Include="Models\TextOverImageMedia.cs" />
     <Compile Include="Models\ImageWithText.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
