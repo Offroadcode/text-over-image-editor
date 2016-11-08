@@ -2,6 +2,8 @@
 	propertyEditors: [{
 		name: "Text Over Image Editor",
 		alias: "TextOverImage.Editor",
+		icon: "icon-billboard",
+		group: "media",
 		editor: {
 			view: "~/app_plugins/TextOverImageEditor/views/TextOverImageEditorView.html",
 			valueType: "JSON"
