@@ -49,6 +49,7 @@
 	* @param {string} data.url
 	* @param {integer} data.width
 	* @param {integer} data.height
+	* @param {string} data.altText
 	* @description Class definining a media object for the text over image.
 	*/
 	models.Media = function(data) {
@@ -57,6 +58,7 @@
 		self.url = "";
 		self.width = 0;
 		self.height = 0;
+		self.altText = "";
 		if (data !== undefined) {
 			if (data.id !== undefined) {
 				self.id = data.id;
@@ -69,6 +71,9 @@
 			}
 			if (data.height !== undefined) {
 				self.height = data.height;
+			}
+			if (data.altText !== undefined) {
+				self.altText = data.altText;
 			}
 		}
 	};

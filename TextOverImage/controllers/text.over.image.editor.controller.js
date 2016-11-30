@@ -63,14 +63,24 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
     */
     $scope.handleMediaPickerSelection = function(data) {
         if (data) {
+			console.info("Media Data", data);
             if (data.id) {
                 $scope.model.value.media.id = data.id;
                 $scope.model.value.media.url = data.image;
                 $scope.model.value.media.width = data.originalWidth;
                 $scope.model.value.media.height = data.originalHeight;
+				$scope.model.value.media.altText = data.name;
 				$scope.shouldShowBannerWithoutImage = true;
+				data.properties.forEach(function(property){
+					if(property.alias == "altText") {
+						if(property.value != "") {
+							$scope.model.value.media.altText = property.value;
+						}
+					}
+				});
             }
         }
+		console.info("Banner Value", $scope.model.value);
     };
 
 	/**

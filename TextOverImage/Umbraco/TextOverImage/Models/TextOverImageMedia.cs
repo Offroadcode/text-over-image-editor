@@ -17,6 +17,9 @@
         [JsonProperty("height")]
         public int Height { get; set; }
 
+        [JsonProperty("altText")]
+        public string AltText { get; set; }
+
         public static TextOverImageMedia Deserialize(string json)
         {
             // Validate the JSON
@@ -32,7 +35,8 @@
                 Id = (int)jobj.Value["id"],
                 Url = (string)jobj.Value["url"],
                 Width = (int)jobj.Value["width"],
-                Height = (int)jobj.Value["height"]
+                Height = (int)jobj.Value["height"],
+                AltText = (string)jobj.Value["altText"]
             };
             
         }
