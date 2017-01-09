@@ -30,3 +30,7 @@ You can also watch for changes using:
 
     grunt watch
     grunt watch --target="D:\inetpub\mysite"
+
+If you want to build the package file (into a pkg folder), use:
+
+    grunt umbraco
