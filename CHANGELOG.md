@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## Unreleased
 
+## [1.0.2]
+
+### Security
+
+* Updated npm dependencies to newest versions to remove known vulnerabilities.
+
 ## [1.0.1]
 
 ### Fixed

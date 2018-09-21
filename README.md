@@ -1,4 +1,4 @@
-# Text Over Image Editor &middot; ![version](https://img.shields.io/badge/version-1.0.1-green.svg) [![our umbraco](https://img.shields.io/badge/our-umbraco-orange.svg)](https://our.umbraco.org/projects/website-utilities/text-over-image-editor/)
+# Text Over Image Editor &middot; ![version](https://img.shields.io/badge/version-1.0.2-green.svg) [![our umbraco](https://img.shields.io/badge/our-umbraco-orange.svg)](https://our.umbraco.org/projects/website-utilities/text-over-image-editor/)
 
 A custom property editor for Umbraco that allows for an image to be selected and a headline and sub-headline to be added to it and then positioned on top of the image.
 

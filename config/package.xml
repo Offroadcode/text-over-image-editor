@@ -16,7 +16,7 @@
       <name><%= author %></name>
       <website><%= authorUrl %></website>
     </author>
-    <readme><![CDATA[<%= readmeContents %>]]></readme>
+    <readme><![CDATA[<%= readme %>]]></readme>
   </info>
   <DocumentTypes />
   <Templates />
@@ -30,7 +30,7 @@
   <files>
   	<% files.forEach(function(file) { %>
   	<file>
-      <guid><%= file.guid %>.<%= file.ext %></guid>
+      <guid><%= file.guid %></guid>
       <orgPath><%= file.dir %></orgPath>
       <orgName><%= file.name %></orgName>
     </file>
