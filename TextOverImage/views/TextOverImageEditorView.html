@@ -9,6 +9,9 @@
             <div ng-show="model.config.showLink">
                 <br/>
                 <button ng-click="openLinkPicker()" type="button" class="btn btn-inline">{{renderAddLinkText()}}</button>
+                <span ng-show="hasLinkSelected()">
+                    <button ng-click="deleteLink()" type="button" class="btn btn-inline btn-danger">X</button>
+                </span>
             </div>
         </div>
         <div class="drop-grid">
