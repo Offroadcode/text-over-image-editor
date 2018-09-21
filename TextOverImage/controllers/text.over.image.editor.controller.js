@@ -54,7 +54,14 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
 			$scope.model.value.position = position;
 		}
 		$scope.toggleMode('edit');
-	};
+    };
+    
+    $scope.deleteLink = function() {
+        $scope.model.value.link.id = ''; 
+        $scope.model.value.link.name = '';
+        $scope.model.value.link.target = '';
+        $scope.model.value.link.url = '';        
+    };
 
     /**
     * @method $scope.handleMediaPickerSelection
@@ -62,25 +69,21 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
     * @description Event handler triggered by a media picker dialog. If there is an image selected, updates the $scope.model.value with the image's information.
     */
     $scope.handleMediaPickerSelection = function(data) {
-        if (data) {
-			console.info("Media Data", data);
-            if (data.id) {
-                $scope.model.value.media.id = data.id;
-                $scope.model.value.media.url = data.image;
-                $scope.model.value.media.width = data.originalWidth;
-                $scope.model.value.media.height = data.originalHeight;
-				$scope.model.value.media.altText = data.name;
-				$scope.shouldShowBannerWithoutImage = true;
-				data.properties.forEach(function(property){
-					if(property.alias == "altText") {
-						if(property.value != "") {
-							$scope.model.value.media.altText = property.value;
-						}
-					}
-				});
-            }
+        if (data && data.id) {
+            $scope.model.value.media.id = data.id;
+            $scope.model.value.media.url = data.image;
+            $scope.model.value.media.width = data.originalWidth;
+            $scope.model.value.media.height = data.originalHeight;
+            $scope.model.value.media.altText = data.name;
+            $scope.shouldShowBannerWithoutImage = true;
+            data.properties.forEach(function(property){
+                if(property.alias == "altText") {
+                    if(property.value != "") {
+                        $scope.model.value.media.altText = property.value;
+                    }
+                }
+            });
         }
-		console.info("Banner Value", $scope.model.value);
     };
 
 	/**
@@ -94,7 +97,7 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
 			$scope.model.value.link.name = data.name;
 			$scope.model.value.link.target = data.target;
 			$scope.model.value.link.url = data.url;
-		}
+        }
 	}
 
 	/**
@@ -151,8 +154,13 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
         dialogService.closeAll();
     };
 
+    /**
+     * @method renderAddLinkText
+     * @returns {string}
+     * @description If a link with a link name exists, returns the link name, otherwise returns '+ Add A Link'
+     */
 	$scope.renderAddLinkText = function() {
-		return $scope.model.value.link.name == "" ? "+ Add a Link" : $scope.model.value.link.name;
+		return $scope.model.value.link.url == "" ? "+ Add a Link" : $scope.model.value.link.name == "" ? $scope.model.value.link.url : $scope.model.value.link.name;
 	}
 
 	/**
@@ -293,7 +301,7 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
     /**
     * @method hasImageSelected
     * @returns {bool}
-    * @description Returns true if there is a selected media image, otherwise returns false.
+    * @description Returns `true` if there is a selected media image, otherwise returns `false`.
     */
     $scope.hasImageSelected = function() {
         var hasImageSelected = false;
@@ -309,6 +317,15 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
 			hasImageSelected = true;
 		}
         return hasImageSelected;
+    };
+
+    /**
+     * @method hasLinkSelected
+     * @returns {bool}
+     * @description Returns true if the user has selected a link.
+     */
+    $scope.hasLinkSelected = function() {
+        return $scope.model && $scope.model.value && $scope.model.value.link.url !== '';
     };
 
 	// Call $scope.init() ////////////////////////////////////////////////////////

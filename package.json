@@ -1,6 +1,6 @@
 {
   "name": "TextOverImageEditor",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "dependencies": {
     "grunt": "~0.4.2",
     "bower": "~1.2.8",
