@@ -11,7 +11,7 @@ namespace TextOverImage.Models
     public class TextOverImageLink
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -34,7 +34,7 @@ namespace TextOverImage.Models
             var jobj = (JProperty)JsonConvert.DeserializeObject(json);
             return new TextOverImageLink
             {
-                Id = (int)jobj.Value["id"],
+                Id = (int?)jobj.Value["id"],
                 Name = (string)jobj.Value["name"],
                 Target = (string)jobj.Value["target"],
                 Url = (string)jobj.Value["url"]
