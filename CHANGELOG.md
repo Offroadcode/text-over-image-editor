@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## Unreleased
 
+## [1.0.3]
+
+### Fixed
+
+* Added logic to prevent ability to select non-image media such as folders.
+
 ## [1.0.2]
 
 ### Security

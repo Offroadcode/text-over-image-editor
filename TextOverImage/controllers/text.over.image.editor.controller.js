@@ -4,7 +4,8 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
 
 	/**
 	* @method init
-	* @description Triggered on the controller loaded, kicks off any initialization functions.
+    * @description Triggered on the controller loaded, kicks off any 
+    * initialization functions.
 	*/
 	$scope.init = function() {
         $scope.setVariables();
@@ -25,7 +26,8 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
 
 	/**
 	* @method changeHeight
-	* @description Changes $scope.model.value.height in a rotation to the next of the three valid values for classNames: "short", "mid", "tall".
+    * @description Changes $scope.model.value.height in a rotation to the next 
+    * of the three valid values for classNames: "short", "mid", "tall".
 	*/
 	$scope.changeHeight = function() {
 		var height = $scope.model.value.height;
@@ -66,10 +68,11 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
     /**
     * @method $scope.handleMediaPickerSelection
     * @param {Object} data - modal object returned by dialogService.mediaPicker().
-    * @description Event handler triggered by a media picker dialog. If there is an image selected, updates the $scope.model.value with the image's information.
+    * @description Event handler triggered by a media picker dialog. If there is 
+    * an image selected, updates the $scope.model.value with the image's information.
     */
     $scope.handleMediaPickerSelection = function(data) {
-        if (data && data.id) {
+        if (data && data.id && !data.isFolder && data.image) {
             $scope.model.value.media.id = data.id;
             $scope.model.value.media.url = data.image;
             $scope.model.value.media.width = data.originalWidth;
@@ -89,7 +92,8 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
 	/**
 	 * @method $scope.handleLinkPickerSelection
 	 * @param {Object} data - modal object returned by dialogService.linkPicker()
-	 * @description Event handler triggered by a link picker dialog. If there is a link selected, updates $scope.model.value with the link's information.
+	 * @description Event handler triggered by a link picker dialog. If there is 
+     * a link selected, updates $scope.model.value with the link's information.
 	 */
 	$scope.handleLinkPickerSelection = function(data) {
 		if (data) {
@@ -102,7 +106,8 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
 
 	/**
 	* @method onRemoveImageConfirmation
-	* @description Handles callback from remove image confirmation dialog, deleting the media item from the model's value.
+    * @description Handles callback from remove image confirmation dialog, 
+    deleting the media item from the model's value.
 	*/
 	$scope.onRemoveImageConfirmation = function() {
 		$scope.model.value.media = new textOverImage.Models.Media();
@@ -110,7 +115,9 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
 
 	/**
 	* @method openConfirmRemoveDialog
-	* @description Using Umbraco's dialogService, opens confirmation dialog, asking user to confirm they want to remove the image from the banner. Dialog result is passed to $scope.onRemoveImageConfirmation
+    * @description Using Umbraco's dialogService, opens confirmation dialog, 
+    * asking user to confirm they want to remove the image from the banner. Dialog 
+    * result is passed to $scope.onRemoveImageConfirmation
 	*/
 	$scope.openConfirmRemoveDialog = function() {
 		dialogService.open({
@@ -124,7 +131,8 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
 
     /**
     * @method openMediaPicker
-    * @description Opens the media picker dialog, showing only images, and sends the data returned to $scope.handleMediaPickerSelection.
+    * @description Opens the media picker dialog, showing only images, and sends 
+    * the data returned to $scope.handleMediaPickerSelection.
     */
     $scope.openMediaPicker = function() {
         var options = {
@@ -136,14 +144,16 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
 
 	/**
     * @method openLinkPicker
-    * @description Opens the content picker dialog, showing only images, and sends the data returned to $scope.handleLinkPickerSelection.
+    * @description Opens the content picker dialog, showing only images, and 
+    * sends the data returned to $scope.handleLinkPickerSelection.
     */
     $scope.openLinkPicker = function () {
 		var link = {
             name: $scope.model.value.link.name,
             url:  $scope.model.value.link.url,
             target: $scope.model.value.link.target,
-         	// Check to see if it's media and remove id as it attempts resolve as content causing error
+             // Check to see if it's media and remove id as it attempts resolve 
+             as content causing error
             id: $scope.model.value.link.isMedia ? null : $scope.model.value.link.id
         }
 
@@ -157,7 +167,8 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
     /**
      * @method renderAddLinkText
      * @returns {string}
-     * @description If a link with a link name exists, returns the link name, otherwise returns '+ Add A Link'
+     * @description If a link with a link name exists, returns the link name, 
+     * otherwise returns '+ Add A Link'
      */
 	$scope.renderAddLinkText = function() {
 		return $scope.model.value.link.url == "" ? "+ Add a Link" : $scope.model.value.link.name == "" ? $scope.model.value.link.url : $scope.model.value.link.name;
@@ -165,7 +176,8 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
 
 	/**
 	* @method showBannerWithoutImage
-	* @description Shows the banner without an image, for text on a single-color background.
+    * @description Shows the banner without an image, for text on a single-color 
+    * background.
 	*/
 	$scope.showBannerWithoutImage = function() {
 		$scope.shouldShowBannerWithoutImage = true;
@@ -174,7 +186,8 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
 	/**
 	* @method toggleMode
 	* @param {optional string} mode
-	* @description If a mode is provided, switch to that. Otherwise, toggle between edit and select.
+    * @description If a mode is provided, switch to that. Otherwise, toggle 
+    * between edit and select.
 	*/
 	$scope.toggleMode = function(mode) {
 		if (mode) {
@@ -193,7 +206,8 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
     /**
     * @method getBackgroundStyle
     * @returns {array of styles}
-    * @description Provides styles for the background image of the text over image editor view.
+    * @description Provides styles for the background image of the text over 
+    * image editor view.
     */
     $scope.getBackgroundStyle = function() {
         var styles = {
@@ -258,7 +272,8 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
 	/**
 	* @method getImageWrapperClasses
 	* @returns {string}
-	* @description Provides the styles for the wrapper div that represents the banner for the property editor.
+    * @description Provides the styles for the wrapper div that represents the 
+    * banner for the property editor.
 	*/
 	$scope.getImageWrapperClasses = function() {
 		var classes = "image " + $scope.model.value.height + " ";
@@ -271,7 +286,8 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
     /**
     * @method getMaxWidth
     * @returns {integer}
-    * @description If $scope.model.config has a maxWidth value, return that. Otherwise, return 800.
+    * @description If $scope.model.config has a maxWidth value, return that. 
+    * Otherwise, return 800.
     */
     $scope.getMaxWidth = function() {
         var value = 800;
@@ -286,7 +302,8 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
     /**
     * @method getPropertyValue
     * @returns {textOverImage.Models.TextOverImage}
-    * @description If the $scope.model.value already exists, filter it through the model and return it. Elsewise, create a new, default model.
+    * @description If the $scope.model.value already exists, filter it through 
+    * the model and return it. Elsewise, create a new, default model.
     */
     $scope.getPropertyValue = function() {
         var value = new textOverImage.Models.TextOverImage();
@@ -301,7 +318,8 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
     /**
     * @method hasImageSelected
     * @returns {bool}
-    * @description Returns `true` if there is a selected media image, otherwise returns `false`.
+    * @description Returns `true` if there is a selected media image, otherwise 
+    * returns `false`.
     */
     $scope.hasImageSelected = function() {
         var hasImageSelected = false;
