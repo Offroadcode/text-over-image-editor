@@ -102,12 +102,12 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
 			$scope.model.value.link.target = data.target;
 			$scope.model.value.link.url = data.url;
         }
-	}
+	};
 
 	/**
 	* @method onRemoveImageConfirmation
     * @description Handles callback from remove image confirmation dialog, 
-    deleting the media item from the model's value.
+    * deleting the media item from the model's value.
 	*/
 	$scope.onRemoveImageConfirmation = function() {
 		$scope.model.value.media = new textOverImage.Models.Media();
@@ -153,7 +153,7 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
             url:  $scope.model.value.link.url,
             target: $scope.model.value.link.target,
              // Check to see if it's media and remove id as it attempts resolve 
-             as content causing error
+             // as content causing error
             id: $scope.model.value.link.isMedia ? null : $scope.model.value.link.id
         }
 
@@ -172,7 +172,7 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
      */
 	$scope.renderAddLinkText = function() {
 		return $scope.model.value.link.url == "" ? "+ Add a Link" : $scope.model.value.link.name == "" ? $scope.model.value.link.url : $scope.model.value.link.name;
-	}
+	};
 
 	/**
 	* @method showBannerWithoutImage
@@ -181,7 +181,7 @@ angular.module("umbraco").controller("text.over.image.editor.controller", functi
 	*/
 	$scope.showBannerWithoutImage = function() {
 		$scope.shouldShowBannerWithoutImage = true;
-	}
+	};
 
 	/**
 	* @method toggleMode
